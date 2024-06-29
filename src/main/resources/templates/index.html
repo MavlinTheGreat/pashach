@@ -51,57 +51,9 @@
         </article>
     </section>
     <section class="boards text-center">
-        <div class="board_column">
-            <article class="board_collection">
-                <h3>Тема 1</h3>
-                <ul>
-                    <li>Доска 1</li>
-                    <li>Доска 2</li>
-                </ul>
-            </article>
-            <article class="board_collection">
-                <h3>Тема 2</h3>
-                <ul>
-                    <li>Доска 3</li>
-                    <li>Доска 4</li>
-                    <li>Доска 5</li>
-                </ul>
-            </article>
-        </div>
-        <div class="board_column">
-            <article class="board_collection">
-                <h3>Тема 3</h3>
-                <ul>
-                    <li>Доска 6</li>
-                    <li>Доска 7</li>
-                </ul>
-            </article>
-            <article class="board_collection">
-                <h3>Тема 4</h3>
-                <ul>
-                    <li>Доска 8</li>
-                    <li>Доска 9</li>
-                    <li>Доска 10</li>
-                </ul>
-            </article>
-        </div>
-        <div class="board_column">
-            <article class="board_collection">
-                <h3>Тема 5</h3>
-                <ul>
-                    <li>Доска 11</li>
-                    <li></li>
-                </ul>
-            </article>
-            <article class="board_collection">
-                <h3></h3>
-                <ul>
-                    <li></li>
-                    <li></li>
-                    <li></li>
-                </ul>
-            </article>
-        </div>
+        <tr th:each="brd : ${boards}">
+            <td><a th:text="${brd.getName()}" th:href="${brd.getCodename()}" target="_blank"/></td>
+        </tr>
     </section>
     <br><br><br>
 </body>

@@ -16,7 +16,10 @@ public class MainController {
     @GetMapping("/")
     public String MainPage(Model model) {
         Iterable<Board> boards = boardRepository.findAll();
-        model.addAttribute(boards);
+        model.addAttribute("boards", boards);
+        for (Board board: boards) {
+            System.out.println(board.getName());
+        }
         return "index";
     }
 
