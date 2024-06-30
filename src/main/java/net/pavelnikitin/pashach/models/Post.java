@@ -1,40 +1,43 @@
 package net.pavelnikitin.pashach.models;
 
 import jakarta.persistence.*;
-import lombok.AllArgsConstructor;
-import lombok.Builder;
-import lombok.RequiredArgsConstructor;
-import org.hibernate.annotations.GenerationTime;
+import lombok.*;
+import org.hibernate.annotations.ColumnDefault;
 
-import javax.annotation.processing.Generated;
 import java.time.LocalDateTime;
 
 @Entity
 @AllArgsConstructor
 @RequiredArgsConstructor
 @Builder
+@ToString
+@Getter
 public class Post {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @Column(length=255, columnDefinition = "VARCHAR(255) DEFAULT '(без заголовка)'")
+    @Column(length=255, columnDefinition = "VARCHAR(255)")
+    @ColumnDefault("'(без заголовка)'")
     private String title;
 
     @Column(nullable=false, columnDefinition = "TEXT")
-    private String post_content;
+    private String postContent;
 
-    private Long pickrelated_id;
+    private Long pickrelatedId;
 
-    @Column(nullable = false, columnDefinition = "VARCHAR(64) DEFAULT 'Anonymous'")
-    private String author_nick;
+    @Column(nullable = false, columnDefinition = "VARCHAR(64)")
+    @ColumnDefault("'Анон'")
+    private String authorPseudo;
 
-    @Column(nullable = false, columnDefinition = "inet")
-    private String author_ip;
+    @Column(nullable = false)
+    private String authorIp;
 
-    @Column(columnDefinition = "TIMESTAMP DEFAULT CURRENT_TIMESTAMP")
-    private LocalDateTime creation_date;
+    @Column(columnDefinition = "TIMESTAMP")
+    @ColumnDefault("CURRENT_TIMESTAMP")
+    private LocalDateTime creationDate;
 
-    @Column(columnDefinition = "BOOLEAN DEFAULT FALSE")
+    @Column(columnDefinition = "BOOLEAN")
+    @ColumnDefault("FALSE")
     private Boolean deleted;
 }

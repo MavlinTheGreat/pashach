@@ -9,7 +9,7 @@ import lombok.RequiredArgsConstructor;
 public class Pickrelated {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-
+    private Long id;
     @Column(nullable = false)
     private String imagepath;
 }

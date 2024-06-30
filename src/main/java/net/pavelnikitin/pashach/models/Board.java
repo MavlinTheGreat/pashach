@@ -2,9 +2,16 @@ package net.pavelnikitin.pashach.models;
 
 import jakarta.persistence.*;
 import lombok.Getter;
+import lombok.Setter;
+import lombok.ToString;
+
+import java.util.ArrayList;
+import java.util.List;
 
 @Entity
 @Getter
+@Setter
+@ToString
 public class Board {
 
     @Id
@@ -20,8 +27,13 @@ public class Board {
     @Column(nullable = false, length = 1024)
     private String description;
 
-    @OneToOne
-    @JoinColumn(name = "thread_id")
-    private Thread thread;
+    @OneToMany
+    @JoinColumn(name = "threads")
+    private List<Thread> threads = new ArrayList<>();
+
+    public void addThread(Thread thread) {
+        threads.add(thread);
+    }
+
 
 }

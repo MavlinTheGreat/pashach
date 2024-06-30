@@ -52,7 +52,7 @@
     </section>
     <section class="boards text-center">
         <tr th:each="brd : ${boards}">
-            <td><a th:text="${brd.getName()}" th:href="${brd.getCodename()}" target="_blank"/></td>
+            <td><a th:text="${brd.getName()}" th:href="${brd.getCodename()}" target="_blank"/><br></td>
         </tr>
     </section>
     <br><br><br>
