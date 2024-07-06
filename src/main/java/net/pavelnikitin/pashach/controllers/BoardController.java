@@ -53,6 +53,12 @@ public class BoardController {
     private RedirectView ThreadPost_add(@PathVariable String board_code, @RequestParam String author_pseudo,
                                   @RequestParam String title, @RequestParam String post_content, HttpServletRequest request) {
         String authorIp = request.getRemoteAddr();
+        if (author_pseudo.isBlank()) {
+            author_pseudo = "Анон";
+        }
+        if (title.isBlank()) {
+            title = "(Без названия)";
+        }
         Post post = Post.builder().authorPseudo(author_pseudo).title(title).postContent(post_content)
                 .authorIp(authorIp).build();
         postRepository.save(post);

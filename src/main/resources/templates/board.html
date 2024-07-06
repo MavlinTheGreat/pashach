@@ -25,7 +25,8 @@
 </section>
 
 <section th:each="topic : ${topics}">
-  <section th:each="post : ${topic.getPosts()}">
+  <button>Ответить в тред</button>
+  <section th:each="post : ${topic.getPosts()}" style="background-color: lightgray;">
     <h3 th:text="${post.getTitle()}"/>
     <p th:text="${post.getPostContent()}"/>
     <p th:text="${post.getCreationDate()}"/>
