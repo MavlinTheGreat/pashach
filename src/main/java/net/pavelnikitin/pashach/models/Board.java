@@ -28,11 +28,11 @@ public class Board {
     private String description;
 
     @OneToMany
-    @JoinColumn(name = "threads")
-    private List<Thread> threads = new ArrayList<>();
+    @JoinColumn(name = "topics")
+    private List<Topic> topics = new ArrayList<>();
 
-    public void addThread(Thread thread) {
-        threads.add(thread);
+    public void addThread(Topic topic) {
+        topics.add(topic);
     }
 
 

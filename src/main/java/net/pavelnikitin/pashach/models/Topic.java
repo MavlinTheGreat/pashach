@@ -10,13 +10,13 @@ import java.util.List;
 @Entity
 @Getter
 @ToString
-public class Thread {
+public class Topic {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long thread_id;
 
     @OneToMany
-    @JoinColumn(name="thread_id")
+    @JoinColumn(name="topic_id")
     private List<Post> posts = new ArrayList<>();
 
     private Boolean can_be_replied;
