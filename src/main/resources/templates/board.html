@@ -25,7 +25,9 @@
 </section>
 
 <section th:each="topic : ${topics}">
-  <button>Ответить в тред</button>
+  <form th:action="@{__${board_code}__/__${topic.getThread_id()}__}">
+    <button type="submit" th:name="|btn${topic.getThread_id()}|" >Ответить в тред</button>
+  </form>
   <section th:each="post : ${topic.getPosts()}" style="background-color: lightgray;">
     <h3 th:text="${post.getTitle()}"/>
     <p th:text="${post.getPostContent()}"/>

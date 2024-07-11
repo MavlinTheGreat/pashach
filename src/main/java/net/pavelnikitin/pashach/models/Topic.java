@@ -15,6 +15,7 @@ public class Topic {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long thread_id;
 
+
     @OneToMany
     @JoinColumn(name="topic_id")
     private List<Post> posts = new ArrayList<>();

@@ -37,11 +37,7 @@ public class BoardController {
             throw new ResponseStatusException(HttpStatus.NOT_FOUND, "Ваш ресурс везде искали, но так и не нашли");
         }
         board = boards.get(0);
-        System.out.println(board);
         Iterable<Topic> topics = board.getTopics();
-        for (Topic thr : topics) {
-            System.out.println(thr);
-        }
         model.addAttribute("board_id", board.getBoard_id());
         model.addAttribute("board_name", board.getName());
         model.addAttribute("board_code", board.getCodename());
