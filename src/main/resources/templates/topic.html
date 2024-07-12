@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="ru" xmlns:th="https://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Пашач</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
+    <link rel="stylesheet" href="/styles/css/main-page.css">
+    <script type="text/javascript" src="/scripts/js/topic.js"></script>
+</head>
+<body>
+<header class="px-4 py-5 my-5 text-center">
+    <img>
+    <h1>Паша.Ч</h1>
+</header>
+    <form th:action="@{__${topic_id}__/add}" method="POST">
+        <input type="text" name="author_pseudo" placeholder="Анон" class="form-control"/>
+        <textarea id="basic_post_area" name="post_content" placeholder="Текст поста" class="form-control"></textarea>
+        <button type="submit" class="btn btn-success">Добавить статью</button>
+    </form>
+    <h3 th:text="${topic_title}" />
+    <div th:each="post : ${posts}">
+        <p th:text="${post.getPostContent()}"/>
+        <p><i th:text="${post.getAuthorPseudo()}"/></p>
+        <form>
+            <button type="button" th:onclick="|javascript:answerPost('__${post.getId()}__')|">Ответить</button>
+        </form>
+    </div>
+</body>
