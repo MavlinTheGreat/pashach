@@ -70,6 +70,6 @@ public class BoardController {
         board.addThread(topic);
         boardRepository.save(board);
 
-        return new RedirectView("/");
+        return new RedirectView("/" + board_code);
     }
 }

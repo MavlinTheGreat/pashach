@@ -28,10 +28,19 @@
   <form th:action="@{__${board_code}__/__${topic.getThread_id()}__}">
     <button type="submit" th:name="|btn${topic.getThread_id()}|" >Ответить в тред</button>
   </form>
-  <section th:each="post : ${topic.getPosts()}" style="background-color: lightgray;">
-    <h3 th:text="${post.getTitle()}"/>
-    <p th:text="${post.getPostContent()}"/>
-    <p th:text="${post.getCreationDate()}"/>
+  <section th:each="post, iterStat : ${topic.getPosts()}" th:if="${iterStat.index} < 2 or ${topic.getPosts().size()} - ${iterStat.index} < 3" style="background-color: lightgray;">
+      <h3 th:text="${post.getTitle()}"/>
+      <p th:text="${post.getPostContent()}"/>
+      <p th:text="${post.getCreationDate()}"/>
+      <p th:text="${iterStat.index}"/>
+      <p th:text="${topic.getPosts().size()}"/>
+      <div th:if="${iterStat.index} == 1 and ${topic.getPosts().size()} > 4">
+        <hr>
+        <p>...</p>
+        <hr>
+      </div>
+
+    </section>
     <br>
   </section>
 </section>
