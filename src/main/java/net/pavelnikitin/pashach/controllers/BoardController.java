@@ -41,6 +41,7 @@ public class BoardController {
         model.addAttribute("board_id", board.getBoard_id());
         model.addAttribute("board_name", board.getName());
         model.addAttribute("board_code", board.getCodename());
+        model.addAttribute("board_desc", board.getDescription());
         model.addAttribute("topics", topics );
         return "board";
     }

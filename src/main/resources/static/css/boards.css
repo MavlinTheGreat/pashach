@@ -1,0 +1,46 @@
+.board-introduction {
+    width: 85%;
+    margin: auto;
+    margin-bottom: 3vh;
+}
+
+.board-introduction p {
+    margin-top: 1vh;
+    font-style: italic;
+}
+
+.newtopic {
+    width: 69%;
+    margin: auto;
+    margin-bottom: 5vh;
+    border: 1px solid black;
+    padding: 2%;
+}
+
+.standart-input {
+    width: 75%;
+    margin-bottom: 1vh;
+}
+
+.newtopic textarea {
+    margin-top: 2vh;
+    margin-bottom: 2vh;
+}
+
+.thread-section {
+    width: 90%;
+    margin: auto;
+}
+
+.topic {
+    background-color: rgb(240, 240, 240);
+}
+
+.post {
+    width: 95%;
+    margin: auto;
+    background-color: rgb(200, 200, 200);
+    padding: 0.5%;
+    margin-bottom: 1vh;
+    margin-top: 1vh;
+}

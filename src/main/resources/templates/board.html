@@ -4,43 +4,44 @@
   <meta charset="UTF-8">
   <title>Пашач</title>
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
-  <link rel="stylesheet" href="/styles/css/main-page.css">
+  <link rel="stylesheet" href="/styles/css/boards.css">
   <link rel="stylesheet" href="/styles/css/basic-configuration.css">
 </head>
 <body>
 <header th:insert="fragments/heading :: heading" />
-<section>
+<section class="board-introduction">
   <h2 th:text="${board_name}" />
+  <p th:text="${board_desc}" />
 </section>
 
-<section>
+<section class="newtopic">
   <form th:action="@{__${board_code}__/add}" method="POST">
-    <input type="text" name="author_pseudo" placeholder="Анон" class="form-control"/>
-    <input type="text" name="title" placeholder="Заголовок" class="form-control"/>
+    <div class="standart-input"><input type="text" name="author_pseudo" placeholder="Анон" class="form-control"/></div>
+    <div class="standart-input"><input type="text" name="title" placeholder="Заголовок" class="form-control"/></div>
     <textarea name="post_content" placeholder="Текст поста" class="form-control"></textarea>
-    <button type="submit" class="btn btn-success">Добавить статью</button>
+    <button type="submit" class="btn btn-success">Создать тред</button>
   </form>
 </section>
 
-<section th:each="topic : ${topics}">
-  <form th:action="@{__${board_code}__/__${topic.getThread_id()}__}">
-    <button type="submit" th:name="|btn${topic.getThread_id()}|" >Ответить в тред</button>
-  </form>
-  <section th:each="post, iterStat : ${topic.getPosts()}" th:if="${iterStat.index} < 2 or ${topic.getPosts().size()} - ${iterStat.index} < 3" style="background-color: lightgray;">
-      <h3 th:text="${post.getTitle()}"/>
-      <p th:text="${post.getPostContent()}"/>
-      <p th:text="${post.getCreationDate()}"/>
-      <p th:text="${iterStat.index}"/>
-      <p th:text="${topic.getPosts().size()}"/>
-      <div th:if="${iterStat.index} == 1 and ${topic.getPosts().size()} > 4">
-        <hr>
-        <p>...</p>
-        <hr>
-      </div>
-
-    </section>
+<section class="thread-section">
+    <section class="topic" th:each="topic : ${topics}">
+        <form th:action="@{__${board_code}__/__${topic.getThread_id()}__}">
+            <button type="submit" th:name="|btn${topic.getThread_id()}|" >Ответить в тред</button>
+        </form>
+        <section class="post" th:each="post, iterStat : ${topic.getPosts()}" th:if="${iterStat.index} < 2 or ${topic.getPosts().size()} - ${iterStat.index} < 3" style="background-color: lightgray;">
+            <h3 th:text="${post.getTitle()}"/>
+            <p th:text="${post.getPostContent()}"/>
+            <p th:text="${post.getCreationDate()}"/>
+            <p th:text="${iterStat.index}"/>
+            <p th:text="${topic.getPosts().size()}"/>
+            <div th:if="${iterStat.index} == 1 and ${topic.getPosts().size()} > 4">
+                <hr>
+                <p>...</p>
+                <hr>
+            </div>
+        </section>
     <br>
-  </section>
+    </section>
 </section>
 
 </body>
