@@ -2,3 +2,26 @@
     margin: auto;
     width: 90%;
 }
+
+.boards {
+    border: 3px lightgrey;
+    border-style: solid none;
+    width: 80%;
+    margin: 0 auto;
+}
+
+.boards a {
+    text-decoration: none;
+    color: darkgrey;
+    outline: none;
+}
+
+.boards a:hover {
+    color: orange;
+    font-weight: bold;
+    font-style: italic;
+}
+
+.board_link {
+    margin-top: 10px;
+}
