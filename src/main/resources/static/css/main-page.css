@@ -1,16 +1,4 @@
-body {
-    align-items: center;
-}
-.boards {
-    width: 100%;
-    max-width: 960px;
-    display: flex;
-    flex-flow: row wrap;
-}
-.board_column {
-    flex: 1 1 auto;
-}
-
-.board_collection ul {
-    list-style: none;
+.introduction {
+    margin: auto;
+    width: 90%;
 }
