@@ -27,6 +27,8 @@
     margin-bottom: 2vh;
 }
 
+
+
 .thread-section {
     width: 90%;
     margin: auto;
@@ -36,8 +38,13 @@
     background-color: rgb(240, 240, 240);
     padding: 0.5%
 }
-.topic form {
-    margin: 0 auto;
+
+.answer-button {
+    display: flex;
+    justify-content: center;
+}
+.answer-button button {
+    display: block;
 }
 
 .post {

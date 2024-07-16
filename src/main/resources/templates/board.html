@@ -25,9 +25,11 @@
 
 <section class="thread-section">
     <section class="topic" th:each="topic : ${topics}">
-        <form th:action="@{__${board_code}__/__${topic.getThread_id()}__}">
-            <button type="submit" th:name="|btn${topic.getThread_id()}|" >Ответить в тред</button>
-        </form>
+        <div class="answer-button">
+            <form th:action="@{__${board_code}__/__${topic.getThread_id()}__}">
+                <button type="submit" th:name="|btn${topic.getThread_id()}|" >Ответить в тред</button>
+            </form>
+        </div>
         <section class="post" th:each="post, iterStat : ${topic.getPosts()}" th:if="${iterStat.index} < 2 or ${topic.getPosts().size()} - ${iterStat.index} < 3" style="background-color: lightgray;">
             <div class="post-header">
                 <h3 th:text="${post.getTitle()}"/>
