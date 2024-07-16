@@ -29,11 +29,14 @@
             <button type="submit" th:name="|btn${topic.getThread_id()}|" >Ответить в тред</button>
         </form>
         <section class="post" th:each="post, iterStat : ${topic.getPosts()}" th:if="${iterStat.index} < 2 or ${topic.getPosts().size()} - ${iterStat.index} < 3" style="background-color: lightgray;">
-            <h3 th:text="${post.getTitle()}"/>
+            <div class="post-header">
+                <h3 th:text="${post.getTitle()}"/>
+                <p th:text = "${post.getAuthorPseudo()}"/>
+                <p th:text="${post.getCreationDate()}"/>
+                <p th:text="${post.getId()}"/>
+
+            </div>
             <p th:text="${post.getPostContent()}"/>
-            <p th:text="${post.getCreationDate()}"/>
-            <p th:text="${iterStat.index}"/>
-            <p th:text="${topic.getPosts().size()}"/>
             <div th:if="${iterStat.index} == 1 and ${topic.getPosts().size()} > 4">
                 <hr>
                 <p>...</p>

@@ -34,6 +34,10 @@
 
 .topic {
     background-color: rgb(240, 240, 240);
+    padding: 0.5%
+}
+.topic form {
+    margin: 0 auto;
 }
 
 .post {
@@ -44,3 +48,17 @@
     margin-bottom: 1vh;
     margin-top: 1vh;
 }
+
+.post-header {
+    display: flex;
+}
+
+.post-header h3 {
+    margin-right: 2vw;
+    font-size: 1.1rem;
+}
+
+.post-header p {
+    margin-right: 0.8vw;
+}
+
