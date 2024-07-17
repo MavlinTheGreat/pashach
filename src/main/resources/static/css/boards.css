@@ -35,7 +35,7 @@
 }
 
 .topic {
-    background-color: rgb(240, 240, 240);
+    background-color: rgba(240, 240, 240, 255);
     padding: 0.5%
 }
 
@@ -43,14 +43,19 @@
     display: flex;
     justify-content: center;
 }
-.answer-button button {
-    display: block;
-}
 
 .post {
-    width: 95%;
-    margin: auto;
-    background-color: rgb(200, 200, 200);
+    width: 90%;
+    background-color: rgba(200, 200, 200, 255);
+    padding: 0.5%;
+    margin-bottom: 1vh;
+    margin-top: 1vh;
+}
+
+.first-post {
+    width: 99%;
+    background-color: rgba(185, 185, 200, 255);
+    font-size: 1.1em;
     padding: 0.5%;
     margin-bottom: 1vh;
     margin-top: 1vh;
@@ -62,7 +67,8 @@
 
 .post-header h3 {
     margin-right: 2vw;
-    font-size: 1.1rem;
+    font-size: 1.25rem;
+    font-weight: 700;
 }
 
 .post-header p {

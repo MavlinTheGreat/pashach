@@ -17,9 +17,7 @@ public class Post {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @Column(length=255, columnDefinition = "VARCHAR(255)")
-    @ColumnDefault("'(без заголовка)'")
-    private String title;
+
 
     @Column(nullable=false, columnDefinition = "TEXT")
     private String postContent;
@@ -35,7 +33,7 @@ public class Post {
 
     @Column(columnDefinition = "TIMESTAMP")
     @ColumnDefault("CURRENT_TIMESTAMP")
-    private LocalDateTime creationDate;
+    private LocalDateTime creationDate = LocalDateTime.now();
 
     @Column(columnDefinition = "BOOLEAN")
     @ColumnDefault("FALSE")

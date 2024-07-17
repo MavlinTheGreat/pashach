@@ -15,6 +15,7 @@ import org.springframework.web.bind.annotation.*;
 import org.springframework.web.server.ResponseStatusException;
 import org.springframework.web.servlet.view.RedirectView;
 
+import java.time.LocalDateTime;
 import java.util.List;
 
 @Controller
@@ -56,10 +57,11 @@ public class BoardController {
         if (title.isBlank()) {
             title = "(Без названия)";
         }
-        Post post = Post.builder().authorPseudo(author_pseudo).title(title).postContent(post_content)
-                .authorIp(authorIp).build();
+        Post post = Post.builder().authorPseudo(author_pseudo).postContent(post_content)
+                .authorIp(authorIp).creationDate(LocalDateTime.now()).build();
         postRepository.save(post);
         Topic topic = new Topic();
+        topic.setTitle(title);
         topic.addPost(post);
         threadRepository.save(topic);
         List<Board> boards = boardRepository.findByCodename(board_code);

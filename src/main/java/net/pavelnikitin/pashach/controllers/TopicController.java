@@ -37,7 +37,7 @@ public class TopicController {
         topic = topics.get();
         Iterable<Post> posts = topic.getPosts();
         Post first_post = topic.getPosts().get(0);
-        model.addAttribute("topic_title", first_post.getTitle());
+        model.addAttribute("topic_title", topic.getTitle());
         model.addAttribute("topic_id", topic.getThread_id());
         System.out.println(posts);
         model.addAttribute("posts", posts);
@@ -52,9 +52,7 @@ public class TopicController {
         if (author_pseudo.isBlank()) {
             author_pseudo = "Анон";
         }
-        System.out.println("Checkpoint: addr and anon");
-        String title = "(без названия)";
-        Post post = Post.builder().authorPseudo(author_pseudo).title(title).postContent(post_content)
+        Post post = Post.builder().authorPseudo(author_pseudo).postContent(post_content)
                 .authorIp(authorIp).build();
         postRepository.save(post);
         Optional<Topic> topics = topicRepository.findById(topic_code);
