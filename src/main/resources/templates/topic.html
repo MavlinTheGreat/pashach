@@ -12,17 +12,24 @@
 <header th:insert="fragments/heading :: heading" />
 <section class="new-post">
     <form th:action="@{__${topic_id}__/add}" method="POST">
-        <input type="text" name="author_pseudo" placeholder="Анон" class="form-control"/>
-        <textarea id="basic_post_area" name="post_content" placeholder="Текст поста" class="form-control"></textarea>
-        <button type="submit" class="btn btn-success">Добавить статью</button>
+        <input type="text" name="author_pseudo" placeholder="Анон" class="form-control pseudo-input"/>
+        <textarea id="basic_post_area" name="post_content" placeholder="Текст поста" class="form-control textinp"></textarea>
+        <button type="submit" class="btn btn-success">Добавить ответ</button>
     </form>
 </section>
-<h3 th:text="${topic_title}" />
-<div th:each="post : ${posts}">
-    <p th:text="${post.getPostContent()}"/>
-    <p><i th:text="${post.getAuthorPseudo()}"/></p>
-    <form>
-        <button type="button" th:onclick="|javascript:answerPost('__${post.getId()}__')|">Ответить</button>
-    </form>
-</div>
+<section class="thread-zone">
+
+    <div th:each="post, iterStat : ${posts}" th:class="${iterStat.index == 0 ? 'first-post' : 'post'}">
+        <h3 th:if="${iterStat.index} == 0" th:text="${topic_title}" />
+        <div class="post-header">
+            <p class="post-author" th:text="${post.getAuthorPseudo()}" />
+            <p class="post-date" th:text="${post.getCreationDate()}" />
+            <p th:text="${post.getId()}" />
+        </div>
+        <p th:text="${post.getPostContent()}" />
+        <form>
+            <button type="button" th:onclick="|javascript:answerPost('__${post.getId()}__')|">Ответить</button>
+        </form>
+    </div>
+</section>
 </body>

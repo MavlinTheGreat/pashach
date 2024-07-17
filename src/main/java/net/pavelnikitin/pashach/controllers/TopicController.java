@@ -16,6 +16,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.server.ResponseStatusException;
 import org.springframework.web.servlet.view.RedirectView;
 
+import java.time.LocalDateTime;
 import java.util.Optional;
 
 @Controller
@@ -53,7 +54,7 @@ public class TopicController {
             author_pseudo = "Анон";
         }
         Post post = Post.builder().authorPseudo(author_pseudo).postContent(post_content)
-                .authorIp(authorIp).build();
+                .authorIp(authorIp).creationDate(LocalDateTime.now()).build();
         postRepository.save(post);
         Optional<Topic> topics = topicRepository.findById(topic_code);
         Topic topic;

@@ -1,7 +1,57 @@
 .new-post {
     width: 69%;
     margin: auto;
-    margin-bottom: 5vh;
+    margin-bottom: 2vh;
     border: 1px solid black;
     padding: 2%;
+}
+
+.pseudo-input {
+    width: 75%;
+    margin-bottom: 0.5vh;
+}
+
+.textinp {
+    margin-bottom: 1vh;
+}
+
+.thread-zone {
+    width: 95%;
+    background-color: rgb(240, 240, 240);
+    padding-top: 0.5%;
+    padding-bottom: 2%;
+    padding-right: 2%;
+    padding-left: 2%;
+    margin: 0 auto;
+}
+
+.first-post {
+    width: 100%;
+    background-color: rgb(190, 190, 200);
+    margin: 0 auto;
+    margin-bottom: 1vh;
+    font-size: 1.05em;
+    padding: 0.75%;
+}
+
+.post {
+    width: 90%;
+    background-color: rgb(200, 200, 200);
+    padding: 0.5%;
+    margin-bottom: 1vh;
+}
+
+.post-header {
+    display: flex;
+}
+
+.post-author {
+    font-weight: 700;
+    font-style: italic;
+    margin-right: 1vw;
+}
+.post-date {
+    font-style: italic;
+    font-size: 0.95em;
+    margin-right: 1vw;
 }
