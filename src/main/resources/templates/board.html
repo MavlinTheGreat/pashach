@@ -15,10 +15,11 @@
 </section>
 
 <section class="newtopic">
-  <form th:action="@{__${board_code}__/add}" method="POST">
+  <form th:action="@{__${board_code}__/add}" enctype="multipart/form-data" method="POST">
     <div class="standart-input"><input type="text" name="author_pseudo" placeholder="Анон" class="form-control"/></div>
     <div class="standart-input"><input type="text" name="title" placeholder="Заголовок" class="form-control"/></div>
     <textarea name="post_content" placeholder="Текст поста" class="form-control"></textarea>
+    <input type="file" name="picrel" accept="image/png, image/jpeg">
     <button type="submit" class="btn btn-success">Создать тред</button>
   </form>
 </section>
@@ -33,6 +34,9 @@
         <section th:class="${iterStat.index == 0 ? 'first-post' : 'post'}" th:each="post, iterStat : ${topic.getPosts()}" th:if="${iterStat.index} < 2 or ${topic.getPosts().size()} - ${iterStat.index} < 3">
             <div class="post-header">
                 <div th:if="${iterStat.index} == 0"><h3 th:text="${topic.getTitle()}"/></div>
+                <div th:each="img: ${post.getPickrelated()}">
+                    <img th:src="${img.getImagepath()}">
+                </div>
                 <p th:text = "${post.getAuthorPseudo()}"/>
                 <p th:text="${post.getCreationDate()}"/>
                 <p th:text="${post.getId()}"/>

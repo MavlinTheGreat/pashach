@@ -5,6 +5,8 @@ import lombok.*;
 import org.hibernate.annotations.ColumnDefault;
 
 import java.time.LocalDateTime;
+import java.util.ArrayList;
+import java.util.List;
 
 @Entity
 @AllArgsConstructor
@@ -22,7 +24,9 @@ public class Post {
     @Column(nullable=false, columnDefinition = "TEXT")
     private String postContent;
 
-    private Long pickrelatedId;
+    @OneToMany
+    @JoinColumn(name = "pic_id")
+    private List<Pickrelated> pickrelated;
 
     @Column(nullable = false, columnDefinition = "VARCHAR(64)")
     @ColumnDefault("'Анон'")
@@ -38,4 +42,12 @@ public class Post {
     @Column(columnDefinition = "BOOLEAN")
     @ColumnDefault("FALSE")
     private Boolean deleted;
+
+
+
+    public void addPickrelated( Pickrelated pc ) {
+        if (pickrelated == null)
+            this.pickrelated = new ArrayList<>();
+        pickrelated.add(pc);
+    };
 }

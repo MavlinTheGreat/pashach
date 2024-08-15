@@ -34,3 +34,4 @@ build/
 
 ### Pashach ###
 **/application.properties
+**/resources/static/user/**
