@@ -42,7 +42,7 @@
                 <p th:text="${post.getId()}"/>
 
             </div>
-            <div th:each="img: ${post.getPickrelated()}" class="post-img">
+            <div th:each="img: ${post.getPickrelated()}" class="post-image">
                 <img th:src="${img.getImagepath()}" th:href="${img.getImagepath()}">
             </div>
             <p th:text="${post.getPostContent()}"/>
