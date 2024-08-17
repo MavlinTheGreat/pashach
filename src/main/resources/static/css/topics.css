@@ -34,6 +34,16 @@
     padding: 0.75%;
 }
 
+.first-post .post-image {
+    display: block;
+    max-width: 35%;
+    height: auto;
+}
+.first-post .post-image img {
+    width: 100%;
+    height: auto;
+}
+
 .post {
     width: 90%;
     background-color: rgb(200, 200, 200);
@@ -54,4 +64,15 @@
     font-style: italic;
     font-size: 0.95em;
     margin-right: 1vw;
+}
+
+.post .post-image {
+    display: block;
+    max-width: 20%;
+    max-height: auto;
+}
+
+.post .post-image img {
+    width: 100%;
+    height: auto;
 }

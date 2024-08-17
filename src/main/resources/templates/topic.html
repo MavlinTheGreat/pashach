@@ -21,7 +21,7 @@
 <section class="thread-zone">
     <div th:each="post, iterStat : ${posts}" th:class="${iterStat.index == 0 ? 'first-post' : 'post'}">
         <h3 th:if="${iterStat.index} == 0" th:text="${topic_title}" />
-        <div th:each="img: ${post.getPickrelated()}">
+        <div th:each="img: ${post.getPickrelated()}" class="post-image">
             <img th:src="${img.getImagepath()}" th:href="${img.getImagepath()}">
         </div>
         <div class="post-header">
