@@ -33,14 +33,17 @@
         </div>
         <section th:class="${iterStat.index == 0 ? 'first-post' : 'post'}" th:each="post, iterStat : ${topic.getPosts()}" th:if="${iterStat.index} < 2 or ${topic.getPosts().size()} - ${iterStat.index} < 3">
             <div class="post-header">
-                <div th:if="${iterStat.index} == 0"><h3 th:text="${topic.getTitle()}"/></div>
-                <div th:each="img: ${post.getPickrelated()}">
-                    <img th:src="${img.getImagepath()}">
+                <div th:if="${iterStat.index} == 0">
+                    <h3 th:text="${topic.getTitle()}"/>
                 </div>
+
                 <p th:text = "${post.getAuthorPseudo()}"/>
                 <p th:text="${post.getCreationDate()}"/>
                 <p th:text="${post.getId()}"/>
 
+            </div>
+            <div th:each="img: ${post.getPickrelated()}">
+                <img th:src="${img.getImagepath()}" th:href="${img.getImagepath()}">
             </div>
             <p th:text="${post.getPostContent()}"/>
             <div th:if="${iterStat.index} == 1 and ${topic.getPosts().size()} > 4">

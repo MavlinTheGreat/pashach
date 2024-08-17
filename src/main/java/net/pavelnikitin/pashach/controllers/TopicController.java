@@ -1,8 +1,10 @@
 package net.pavelnikitin.pashach.controllers;
 
 import jakarta.servlet.http.HttpServletRequest;
+import net.pavelnikitin.pashach.models.Pickrelated;
 import net.pavelnikitin.pashach.models.Post;
 import net.pavelnikitin.pashach.models.Topic;
+import net.pavelnikitin.pashach.repositories.PickrelatedRepository;
 import net.pavelnikitin.pashach.repositories.PostRepository;
 import net.pavelnikitin.pashach.repositories.TopicRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -13,6 +15,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.server.ResponseStatusException;
 import org.springframework.web.servlet.view.RedirectView;
 
@@ -27,6 +30,9 @@ public class TopicController {
 
     @Autowired
     private TopicRepository topicRepository;
+
+    @Autowired
+    private PickrelatedRepository pickrelatedRepository;
 
     @GetMapping("/{board_code}/{topic_code}")
     private String TopicPage(@PathVariable String board_code, @PathVariable Long topic_code, Model model) {
@@ -48,6 +54,7 @@ public class TopicController {
     @PostMapping("/{board_code}/{topic_code}/add")
     private RedirectView addPostTopic(@PathVariable String board_code, @PathVariable Long topic_code,
                                       @RequestParam String author_pseudo, @RequestParam String post_content,
+                                      @RequestParam("picrel") MultipartFile file,
                                       HttpServletRequest request, Model model) {
         String authorIp = request.getRemoteAddr();
         if (author_pseudo.isBlank()) {
@@ -55,6 +62,14 @@ public class TopicController {
         }
         Post post = Post.builder().authorPseudo(author_pseudo).postContent(post_content)
                 .authorIp(authorIp).creationDate(LocalDateTime.now()).build();
+        if (!file.isEmpty()) {
+            Pickrelated pickrelated = new Pickrelated();
+            pickrelatedRepository.save(pickrelated);
+            pickrelated.addPic(file);
+            pickrelatedRepository.save(pickrelated);
+            post.addPickrelated(pickrelated);
+            System.out.println(pickrelated.getId());
+        }
         postRepository.save(post);
         Optional<Topic> topics = topicRepository.findById(topic_code);
         Topic topic;

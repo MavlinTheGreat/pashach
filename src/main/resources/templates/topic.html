@@ -11,16 +11,19 @@
 <body>
 <header th:insert="fragments/heading :: heading" />
 <section class="new-post">
-    <form th:action="@{__${topic_id}__/add}" method="POST">
+    <form th:action="@{__${topic_id}__/add}" method="POST" enctype="multipart/form-data">
         <input type="text" name="author_pseudo" placeholder="Анон" class="form-control pseudo-input"/>
         <textarea id="basic_post_area" name="post_content" placeholder="Текст поста" class="form-control textinp"></textarea>
+        <input type="file" name="picrel" accept="image/png, image/jpeg">
         <button type="submit" class="btn btn-success">Добавить ответ</button>
     </form>
 </section>
 <section class="thread-zone">
-
     <div th:each="post, iterStat : ${posts}" th:class="${iterStat.index == 0 ? 'first-post' : 'post'}">
         <h3 th:if="${iterStat.index} == 0" th:text="${topic_title}" />
+        <div th:each="img: ${post.getPickrelated()}">
+            <img th:src="${img.getImagepath()}" th:href="${img.getImagepath()}">
+        </div>
         <div class="post-header">
             <p class="post-author" th:text="${post.getAuthorPseudo()}" />
             <p class="post-date" th:text="${post.getCreationDate()}" />
