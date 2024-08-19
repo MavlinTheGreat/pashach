@@ -9,6 +9,7 @@ import net.pavelnikitin.pashach.repositories.BoardRepository;
 import net.pavelnikitin.pashach.repositories.PickrelatedRepository;
 import net.pavelnikitin.pashach.repositories.PostRepository;
 import net.pavelnikitin.pashach.repositories.TopicRepository;
+import net.pavelnikitin.pashach.services.PickrelatedService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Controller;
@@ -35,6 +36,9 @@ public class BoardController {
 
     @Autowired
     private PickrelatedRepository pickrelatedRepository;
+
+    @Autowired
+    private PickrelatedService pickrelatedService;
 
     @GetMapping("/{board_code}")
     private String BoardPage(@PathVariable String board_code, Model model) {
@@ -72,10 +76,9 @@ public class BoardController {
         if (!file.isEmpty()) {
             Pickrelated pickrelated = new Pickrelated();
             pickrelatedRepository.save(pickrelated);
-            pickrelated.addPic(file);
+            pickrelatedService.addPic(pickrelated, file);
             pickrelatedRepository.save(pickrelated);
             post.addPickrelated(pickrelated);
-            System.out.println(pickrelated.getId());
         }
         postRepository.save(post);
         Topic topic = new Topic();
